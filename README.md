@@ -6,3 +6,6 @@ npx prisma studio
 
 ## generate schema in db
 prisma migrate dev
+
+## generate prisma client
+prisma generate
