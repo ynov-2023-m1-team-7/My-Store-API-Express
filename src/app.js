@@ -9,7 +9,7 @@ const moment = require('moment');
 
 
 const app = express()
-app.use(cors());
+
 
 // Trust the headers set by your reverse proxy
 app.set('trust proxy', true);
@@ -26,8 +26,14 @@ app.use(bodyParser.json({ limit: '50mb' }))
 
 app.use(express.json());
 
-//access to public folder
-app.use(express.static(__dirname + '/public'));
+
+// cors
+app.use(
+    cors({
+        origin: config.frontend_url,
+    }),
+);
+
 
 // initial route
 app.get('/', (req, res) => {
@@ -50,17 +56,15 @@ app.use((req, res, next) => {
 });
 
 // api routes prefix
-app.use(
-    '/api',
-    routes,
-);
+app.use('/api', routes);
 
 // error handling
 app.use(errorHandler);
 
 // run server
 app.listen(config.port, () => {
-    console.log('server launch');
+    console.log(`Server up on port ${config.port}`);
+    console.log(`Open http://localhost:${config.port}/api/`);
 });
 
 module.exports = app;
