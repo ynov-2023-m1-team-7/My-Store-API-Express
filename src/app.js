@@ -5,10 +5,15 @@ const config = require('./config');
 const routes = require('./routes');
 const bodyParser = require('body-parser')
 const moment = require('moment');
+const duplicateAllDataToRedis = require('./Redis/launch');
+const { PrismaClient } = require('@prisma/client');
 
+const app = express();
+const prisma = new PrismaClient();
 
+// duplicate all data to Redis at launch
+duplicateAllDataToRedis();
 
-const app = express()
 
 
 // Trust the headers set by your reverse proxy
