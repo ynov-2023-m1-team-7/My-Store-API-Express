@@ -3,7 +3,6 @@ const { PrismaClient } = require('@prisma/client');
 const throwError = require('../utils/throwError');
 const { request } = require('../app');
 const path = require('path');
-const express = require('express');
 const fs = require('fs');
 const { promisify } = require('util');
 const readFileAsync = promisify(fs.readFile);
