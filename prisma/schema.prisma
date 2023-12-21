@@ -7,7 +7,7 @@ datasource db {
   url      = env("POSTGRES_URL")
 }
 
-model Product {
+model product {
   id          Int     @id @default(autoincrement())
   name        String
   description String?
