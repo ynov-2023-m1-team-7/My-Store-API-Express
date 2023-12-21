@@ -13,6 +13,16 @@ model product {
   description String?
   active      Boolean @default(false)
   thumbnail   String
-  packshot    String @default("/uploads/")
+  packshot    String  @default("/uploads/")
   price       Decimal @default(0.00)
+  form        form[]
+}
+
+model form {
+  id        Int     @id @default(autoincrement())
+  firstName String
+  lastName  String
+  email     String
+  product   product @relation(fields: [productId], references: [id])
+  productId Int
 }

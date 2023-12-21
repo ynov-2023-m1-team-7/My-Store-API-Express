@@ -1,5 +1,6 @@
 const express = require('express');
 const productRoute = require('./product.route');
+const formRoute = require('./form.route');
 
 const router = express.Router();
 
@@ -8,5 +9,7 @@ router.get('/', (req, res) => {
 });
 
 router.use('/products', productRoute);
+router.use('/forms', formRoute);
+
 
 module.exports = router;
