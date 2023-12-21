@@ -3,11 +3,10 @@
 const { PrismaClient } = require('@prisma/client');
 
 const throwError = require('../utils/throwError');
-const { request } = require('../app');
-const path = require('path');
 const fs = require('fs');
 const { promisify } = require('util');
-const readFileAsync = promisify(fs.readFile);
+const prisma = new PrismaClient();
+
 
 exports.getForms = async (req, res, next) => {
     try {
@@ -58,16 +57,18 @@ exports.getForm = async (req, res, next) => {
 
 exports.createForm = async (req, res, next) => {
     try {
-        const { name, description, price } = req.body;
-        if (!name || !description || !price) {
-            const err = throwError('No name, description, or price provided', 404);
+        const { firstName, lastName, email, productId } = req.body;
+        if (!firstName || !lastName || !email || !productId) {
+            console.log("Missing required fields" + req.body);
+            const err = throwError('Missing required fields', 400);
             return next(err);
         }
         const form = await prisma.form.create({
             data: {
-                name,
-                description,
-                price,
+                firstName,
+                lastName,
+                email,
+                productId: Number(productId),
             },
         });
         return res.json(
