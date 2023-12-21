@@ -11,10 +11,7 @@ const prisma = new PrismaClient();
 exports.getForms = async (req, res, next) => {
     try {
         console.log("getForms");
-        const forms = await prisma.form.findMany({
-            where: { active: true },
-            take: req.query.take ? Number(req.query.take) : 8,
-        });
+        const forms = await prisma.form.findMany();
         if (!forms) {
             const err = throwError('No forms found', 404);
             return next(err);

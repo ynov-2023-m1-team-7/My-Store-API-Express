@@ -5,7 +5,7 @@ npm run dev
 npx prisma studio
 
 ## generate schema in db
-prisma migrate dev
+npx prisma migrate dev
 
 ## generate prisma client
-prisma generate
+npx prisma generate

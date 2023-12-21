@@ -12,6 +12,8 @@ COPY . .
 # permission to script bash
 RUN chmod +x ./wait-for-it.sh
 RUN chmod +x ./wait-for-services-sql.sh
+# RUN npx prisma migrate dev
+RUN npx prisma generate
 
 EXPOSE 3030
 
