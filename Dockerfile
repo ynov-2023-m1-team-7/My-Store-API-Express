@@ -9,7 +9,12 @@ RUN npm install
 
 COPY . .
 
+# permission to script bash
+RUN chmod +x ./wait-for-it.sh
+RUN chmod +x ./wait-for-services-sql.sh
+
 EXPOSE 3030
+
 CMD ["npm", "run", "start"]
 
 #command to build the image
